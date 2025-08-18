@@ -1,15 +1,23 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private Rigidbody rb;
+    public GameObject coin;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            var player = other.GetComponent<Player>();
+            coin.SetActive(false);
+        }
+    }
+    private void Update()
     {
         
     }
