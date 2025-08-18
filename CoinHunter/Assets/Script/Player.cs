@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        GameObject findGo = GameObject.FindWithTag("GameController");
+        var gm = findGo.GetComponent<GameManager>();
+        gm.EndGame();
     }
 }

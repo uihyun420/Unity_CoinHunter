@@ -18,6 +18,9 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            GameManager gm = FindObjectOfType<GameManager>();
+            gm.AddCoin();
+            gm.AddScore();
             Destroy(gameObject);
         }
     }
