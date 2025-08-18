@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -21,11 +21,17 @@ public class Player : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 velocity = new Vector3(h, 0f, v);
-        if(velocity.magnitude > 1f)
+        if (velocity.magnitude > 1f)
         {
             velocity.Normalize();
         }
         velocity *= Speed;
         body.linearVelocity = velocity;
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

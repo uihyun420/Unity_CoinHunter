@@ -1,24 +1,21 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Cube : MonoBehaviour
 {
     private Rigidbody rb;
 
-    // 코인 프리팹 참조
-    public GameObject coinPrefab;
-    public GameObject coin;
-    private bool isActive = false;
+    public GameObject cubePrefab;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            var player = other.GetComponent<Player>();
+            player.Die();
         }
     }
 
