@@ -15,10 +15,8 @@ public class Cube : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager gm = other.GetComponent<GameManager>();
             var player = other.GetComponent<Player>();
             player.Die();
-            gm.EndGame();
         }
     }
 

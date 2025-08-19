@@ -30,34 +30,46 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(false);
     }
 
-    public bool IsGameOver()
-    {
-        return isGameOver;
-    }
+    //public bool IsGameOver()
+    //{
+    //    return isGameOver;
+    //}
 
     private void Update()
     {
-
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if(!isGameOver)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            surviveTime += Time.deltaTime;
+
+            timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
+
+            Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+            score = (player.GetCoinCount() * 10) + Mathf.FloorToInt(surviveTime);
+
+            scoreText.text = $"Score: {score}";
+
+            currentCoinText.text = $"Coins Count: {player.GetCoinCount()}";
         }
-        if (isGameOver)
+
+        else
         {
-            return;
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
-        surviveTime += Time.deltaTime;
 
-        timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
+        //else(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //}
+        //if (isGameOver)
+        //{
+        //    return;
+        //}
 
-        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
-
-        score = (player.GetCoinCount() * 10) + Mathf.FloorToInt(surviveTime);
-
-        scoreText.text = $"Score: {score}";
-
-        currentCoinText.text = $"Coins Count: {player.GetCoinCount()}";
     }
 
     public void EndGame()

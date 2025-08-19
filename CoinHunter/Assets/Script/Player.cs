@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
-        //Destroy(gameObject);
 
         GameObject findGo = GameObject.FindWithTag("GameController");
         var gm = findGo.GetComponent<GameManager>();
