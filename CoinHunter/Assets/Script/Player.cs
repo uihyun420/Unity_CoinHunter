@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float Speed;
+    public int coinCount = 0;
     private Rigidbody body;
 
     private void Awake()
@@ -12,7 +13,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-
     }
 
     private void Update()
@@ -27,6 +27,16 @@ public class Player : MonoBehaviour
         }
         velocity *= Speed;
         body.linearVelocity = velocity;
+    }
+
+    public void AddCoin(int count)
+    {
+        coinCount += count;
+    }
+
+    public int GetCoinCount()
+    {
+        return coinCount;
     }
 
     public void Die()

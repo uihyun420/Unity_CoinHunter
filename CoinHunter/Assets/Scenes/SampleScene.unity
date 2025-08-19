@@ -880,6 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
+  coinCount: 0
 --- !u!1 &803168405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,11 +1185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f9c022cad126c449c5d7c100a7376a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 0}
   gameOver: {fileID: 0}
   bestRecordText: {fileID: 0}
-  count: {fileID: 0}
-  score: {fileID: 0}
+  timeText: {fileID: 0}
+  scoreText: {fileID: 0}
+  currentCoinText: {fileID: 0}
 --- !u!1 &1364722490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,11 +1491,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f9c022cad126c449c5d7c100a7376a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeText: {fileID: 212713188}
   gameOver: {fileID: 803168405}
   bestRecordText: {fileID: 381893726}
-  count: {fileID: 1525784309}
-  score: {fileID: 1364722492}
+  timeText: {fileID: 212713188}
+  scoreText: {fileID: 1364722492}
+  currentCoinText: {fileID: 1525784309}
 --- !u!4 &1557273304
 Transform:
   m_ObjectHideFlags: 0

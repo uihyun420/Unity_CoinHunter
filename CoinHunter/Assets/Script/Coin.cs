@@ -16,17 +16,15 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")) 
         {
-            GameManager gm = FindObjectOfType<GameManager>();
-            gm.AddCoin();
-            gm.AddScore();
-            Destroy(gameObject);
+            Player player = other.GetComponent<Player>();
+            Destroy(gameObject); 
+            player.AddCoin(1);
         }
     }
 
     private void Update()
     {
-
     }
 }

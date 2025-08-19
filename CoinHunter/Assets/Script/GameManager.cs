@@ -1,75 +1,73 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI timeText;
-
     public GameObject gameOver;
 
     public TextMeshProUGUI bestRecordText;
 
-    public TextMeshProUGUI count;
+    public TextMeshProUGUI timeText;
 
-    public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreText;
+
+    public TextMeshProUGUI currentCoinText;
 
     private float surviveTime;
-    private int coinCount = 0;
+
+    private int score = 0;
 
     private bool isGameOver = false;
 
+
     private void Start()
     {
+        score = 0;
+        surviveTime = 0f;
+        isGameOver = false;
         gameOver.SetActive(false);
     }
-    private void Update()
-    {
-        if (!isGameOver)
-        {
-            surviveTime += Time.deltaTime;
-            timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
 
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
+    public bool IsGameOver()
+    {
+        return isGameOver;
     }
 
+    private void Update()
+    {
+        surviveTime += Time.deltaTime;
+        timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (isGameOver)
+        {
+            return;
+        }
+
+        score = (player.GetCoinCount() * 10) + Mathf.FloorToInt(surviveTime);
+        scoreText.text = $"Score: {score}";
+        currentCoinText.text = $"Coins Count: {player.GetCoinCount()}";
+    }
 
     public void EndGame()
     {
         isGameOver = true;
         gameOver.SetActive(true);
 
-
-        float bestTime = PlayerPrefs.GetFloat("BestTime", 0f);
-        if (surviveTime > bestTime)
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        if (score > bestScore)
         {
-            bestTime = surviveTime;
-            PlayerPrefs.SetFloat("BestTime", surviveTime);
-            //PlayerPrefs.Save();
+            bestScore = score;
+            PlayerPrefs.SetInt("BestScore", score);
+            PlayerPrefs.Save();
         }
-        int totalScore = (coinCount * 10) + Mathf.FloorToInt(surviveTime);
 
-        bestRecordText.text = $"Best Record: {Mathf.FloorToInt(totalScore)}";
-        //bestRecordText.text = $"Best Record: {Mathf.FloorToInt(bestTime)}";
-    }
-
-    public void AddCoin()
-    {
-        coinCount++;
-        count.text = $"Coin Count: {coinCount}";
-    }
-    public void AddScore()
-    {
-        int totalScore = (coinCount * 10) + Mathf.FloorToInt(surviveTime);
-        score.text = $"Score: {totalScore}";
-       
+        bestRecordText.text = $"Best Record: {Mathf.FloorToInt(bestScore)}";
     }
 }
