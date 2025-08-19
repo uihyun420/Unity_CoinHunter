@@ -37,9 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        surviveTime += Time.deltaTime;
-        timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
-        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -49,9 +47,16 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        surviveTime += Time.deltaTime;
+
+        timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
+
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
         score = (player.GetCoinCount() * 10) + Mathf.FloorToInt(surviveTime);
+
         scoreText.text = $"Score: {score}";
+
         currentCoinText.text = $"Coins Count: {player.GetCoinCount()}";
     }
 

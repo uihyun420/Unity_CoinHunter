@@ -9,7 +9,7 @@ public class Cube : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject, 5f); // 3초 있다가 삭제
+        Destroy(gameObject, 3f); 
     }
     private void OnTriggerEnter(Collider other)
     {
