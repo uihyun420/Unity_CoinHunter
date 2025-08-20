@@ -30,25 +30,17 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(false);
     }
 
-    //public bool IsGameOver()
-    //{
-    //    return isGameOver;
-    //}
-
     private void Update()
     {
         if(!isGameOver)
         {
             surviveTime += Time.deltaTime;
-
             timeText.text = $"Time: {Mathf.FloorToInt(surviveTime)}";
 
             Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
 
             score = (player.GetCoinCount() * 10) + Mathf.FloorToInt(surviveTime);
-
             scoreText.text = $"Score: {score}";
-
             currentCoinText.text = $"Coins Count: {player.GetCoinCount()}";
         }
 
@@ -61,20 +53,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //else(Input.GetKeyDown(KeyCode.R))
-        //{
-        //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //}
-        //if (isGameOver)
-        //{
-        //    return;
-        //}
+
 
     }
 
     public void EndGame()
     {
         isGameOver = true;
+
         gameOver.SetActive(true);
 
         int bestScore = PlayerPrefs.GetInt("BestScore", 0);

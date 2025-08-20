@@ -30,6 +30,7 @@ public class CubeSpwaner : MonoBehaviour
                 Vector3 spawnPos = new Vector3
                 (
                     Random.Range(spawnMin.x, spawnMax.x),
+                    Random.Range(spawnMin.y, spawnMax.y),
                     Random.Range(spawnMin.z, spawnMax.z)
                 );
                 Instantiate(cubePrefab, spawnPos, Quaternion.identity);

@@ -3,6 +3,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     public GameObject coinPrefab;
+
     public Vector3 spawnMin = new Vector3(-5, 1, -5);
     public Vector3 spawnMax = new Vector3(5, 1, 5);
 
@@ -26,7 +27,8 @@ public class CoinSpawner : MonoBehaviour
         {
             for (int i = 0; i < coinsPerSpawn; i++)
             {
-                Vector3 spawnPos = new Vector3(
+                Vector3 spawnPos = new Vector3
+                (
                     Random.Range(spawnMin.x, spawnMax.x),
                     Random.Range(spawnMin.y, spawnMax.y),
                     Random.Range(spawnMin.z, spawnMax.z)
